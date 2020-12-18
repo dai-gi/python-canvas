@@ -1,5 +1,7 @@
+# いちばんやさしいPython入門教室
 # クリックされたされたところに描画する
 # coding:utf-8
+
 import tkinter as tk 
 
 def click(event):
@@ -14,7 +16,17 @@ root.geometry("600x400")
 canvas =tk.Canvas(root, width =600, height =400, bg="white")
 canvas.place(x = 0, y = 0)
 
-# イベントを設定する
+"""
+bindメソッド(第一引数)：
+<Button-1> = Button <- マウス？が「クリック」されたという意
+<Button-1> = 
+「1」の場合 <- マウス？が「左クリック」されたという意
+「2」の場合 <- マウス？が「右クリック」されたという意
+「3」の場合 <- マウス？が「中央クリック」されたという意
+
+bindメソッド(第二引数)：
+定義したclick関数を呼び出す
+"""
 canvas.bind("<Button-1>",click)
 
 root.mainloop()
