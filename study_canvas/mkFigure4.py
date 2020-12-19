@@ -1,5 +1,6 @@
 # 一定時間ごとに関数を実行する
 # coding:utf-8
+
 import tkinter as tk
 
 # 円の座標
@@ -8,9 +9,9 @@ y = 300
 
 def move():
     global x, y
-    # いまの円を消す
+    # 赤の円を消す
+    canvas.create_oval(x - 30, y - 30, x + 20, y + 20, fill="white", width=0)
     # X座標を動かす
-    canvas.create_oval(x - 20, y - 20, x + 20, y - 20, fill="white", width=0)
     x = x + 1
     # 次の位置に円を描く
     canvas.create_oval(x - 20, y - 20, x + 20, y + 20, fill="red", width=0)
