@@ -1,7 +1,11 @@
-# 三角形・四角形
+# いちばんやさしいPython入門教室
+# 円形・四角形・三角形をクラスで管理
 # coding:utf-8
+
 import tkinter as tk
+
 class Ball:
+    
     def __init__(self, x, y, dx, dy, color):
         self.x = x
         self.y = y
@@ -29,14 +33,20 @@ class Ball:
 
     def erase(self, canvas):
         canvas.create_oval(self.x -20, self.y -20, self.x +20, self.y + 20, fill="white", width=0)
+    
     def draw(self, canvas):
         canvas.create_oval(self.x -20, self.y -20, self.x +20, self.y +20, fill=self.color, width=0)
 
+
+# Ballクラスを継承
 class Rectangle(Ball):
+
     def erase(self, canvas):
         canvas.create_rectangle(self.x -20, self.y -20, self.x +20, self.y + 20, fill="white", width=0)
+    
     def draw(self, canvas):
         canvas.create_rectangle(self.x -20, self.y -20, self.x +20, self.y +20, fill=self.color, width=0)
+    
     def move(self, canvas):
         # いまの円を消す
         self.erase(canvas)
@@ -55,14 +65,16 @@ class Rectangle(Ball):
         if (self.y <= 0):
             self.dy = 9
 
+# Ballクラスを継承
 class Triangle(Ball):
+    
     def erase(self, canvas):
         canvas.create_polygon(self.x, self.y -20, self.x +20, self.y + 20, self.x -20, self.y +20, fill="white", width=0)
+    
     def draw(self, canvas):
         canvas.create_polygon(self.x, self.y -20, self.x +20, self.y + 20, self.x -20, self.y +20, fill=self.color, width=0)
 
 
-# 円を複数作る
 balls = [
     Ball(400, 300, 1, 1, "red"),
     Rectangle(200, 100, -1, 1, "green"),
@@ -70,21 +82,17 @@ balls = [
 ]
 
 def loop():
-    # 動かす
     for b in balls:
         b.move(canvas)
-    # もう一回
+
     root.after(10,loop)
 
-# ウィンドウを描く
 root = tk.Tk()
 root.geometry("800x600")
 
-# Canvasを置く
 canvas =tk.Canvas(root, width =800, height =600, bg="#fff")
 canvas.place(x = 0, y = 0)
 
-# タイマーをセット
 root.after(10, loop)
 
 root.mainloop()
