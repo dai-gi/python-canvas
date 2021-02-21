@@ -1,1 +1,1 @@
-# python_canvas
+# python-canvas
